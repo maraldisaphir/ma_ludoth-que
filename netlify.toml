@@ -1,3 +1,28 @@
 [build]
-  publish = "."
-  command = ""
+  publish = "public"
+  functions = "functions"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@netlify/blobs"]
+
+# API routes
+[[redirects]]
+  from = "/api/games/list"
+  to   = "/.netlify/functions/games-list"
+  status = 200
+
+[[redirects]]
+  from = "/api/games/get"
+  to   = "/.netlify/functions/games-get"
+  status = 200
+
+[[redirects]]
+  from = "/api/games/put"
+  to   = "/.netlify/functions/games-put"
+  status = 200
+
+[[redirects]]
+  from = "/api/games/delete"
+  to   = "/.netlify/functions/games-delete"
+  status = 200
