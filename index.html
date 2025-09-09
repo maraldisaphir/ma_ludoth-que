@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liste des Jeux</title>
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+  <header class="p-4 shadow-md bg-white dark:bg-gray-800">
+    <h1 class="text-xl font-bold">🎲 Ma Ludothèque</h1>
+  </header>
+  <main class="p-4">
+    <input type="text" id="search" placeholder="Rechercher un jeu..." class="p-2 w-full border rounded mb-4">
+    <div id="games" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </main>
+  <script src="js/consulter.js"></script>
+</body>
+</html>

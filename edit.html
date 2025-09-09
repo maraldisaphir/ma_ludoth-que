@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Éditer Jeux</title>
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+  <header class="p-4 shadow-md bg-white dark:bg-gray-800">
+    <h1 class="text-xl font-bold">✏️ Créer / Éditer</h1>
+  </header>
+  <main class="p-4">
+    <form id="gameForm" class="grid gap-2">
+      <input type="text" id="nom" placeholder="Nom du jeu" required class="p-2 border rounded">
+      <input type="number" id="min" placeholder="Nb joueurs min" class="p-2 border rounded">
+      <input type="number" id="max" placeholder="Nb joueurs max" class="p-2 border rounded">
+      <input type="text" id="age" placeholder="Âge recommandé" class="p-2 border rounded">
+      <input type="text" id="duree" placeholder="Durée (ex: 30 min)" class="p-2 border rounded">
+      <input type="text" id="types" placeholder="Types (séparés par ,)" class="p-2 border rounded">
+      <input type="text" id="remarque" placeholder="Remarques" class="p-2 border rounded">
+      <textarea id="description" placeholder="Description" class="p-2 border rounded"></textarea>
+      <input type="file" id="photo" accept="image/*" class="p-2 border rounded">
+      <button type="submit" class="p-2 bg-blue-600 text-white rounded">Enregistrer</button>
+    </form>
+  </main>
+  <script src="js/edit.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+[
+  {
+    "nom": "Unanimo",
+    "nb_joueurs_min": 3,
+    "nb_joueurs_max": 8,
+    "age": "7+",
+    "duree": "20 min",
+    "types": [
+      "Ambiance"
+    ],
+    "remarque": "Mots / Connexion d’idées",
+    "description": "Trouvez les mots auxquels penseront aussi les autres joueurs.",
+    "photo": "assets/images/jeux/unanimo.png"
+  },
+  {
+    "nom": "Time's Up! Family",
+    "nb_joueurs_min": 4,
+    "nb_joueurs_max": 12,
+    "age": "8+",
+    "duree": "40 min",
+    "types": [
+      "Ambiance"
+    ],
+    "remarque": "Version Family",
+    "description": "Faites deviner des personnalités en trois manches de plus en plus restrictives.",
+    "photo": "assets/images/jeux/timesup.png"
+  },
+  {
+    "nom": "Rythme and Boulet",
+    "nb_joueurs_min": 4,
+    "nb_joueurs_max": 12,
+    "age": "10+",
+    "duree": "20 min",
+    "types": [
+      "Ambiance"
+    ],
+    "remarque": "Fun & rythmé",
+    "description": "Jeu d'ambiance où chaque joueur a un geste à mémoriser et enchaîner.",
+    "photo": "assets/images/jeux/rythmeboulet.png"
+  }
+]
