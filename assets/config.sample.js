@@ -1,0 +1,1 @@
+window.CONFIG={cloud:{baseUrl:'',token:''}};
