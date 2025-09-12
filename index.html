@@ -1,1 +1,57 @@
-<!DOCTYPE html><html><head><meta charset='utf-8'><title>Mes Jeux</title></head><body>App Mes Jeux - voir assets</body></html>
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mes Jeux</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">🎲</span><span>Mes Jeux</span></div>
+    <div class="top-actions">
+      <button id="theme-toggle" class="btn ghost">Thème</button>
+      <nav class="tabs">
+        <button class="tab" data-tab="browse" id="tab-browse">Consulter / Imprimer</button>
+        <button class="tab" data-tab="edit" id="tab-edit">Créer / Éditer</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="tab-panel" id="panel-browse">
+      <div class="card">
+        <input id="search" type="search" placeholder="Rechercher..." />
+        <div id="grid" class="game-grid"></div>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="panel-edit" hidden>
+      <div class="card">
+        <h3>Gestion des jeux</h3>
+        <div class="game-fields">
+          <div class="form-field"><label>Nom</label><input id="jeu-nom"></div>
+          <div class="form-field"><label>Nb joueurs min</label><input id="jeu-nb-min" type="number"></div>
+          <div class="form-field"><label>Nb joueurs max</label><input id="jeu-nb-max" type="number"></div>
+          <div class="form-field"><label>Âge</label><input id="jeu-age"></div>
+          <div class="form-field"><label>Durée</label><input id="jeu-duree" type="number"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Paramètres en bas -->
+    <div class="card" id="params-card">
+      <h3>Paramètres (Types)</h3>
+      <div class="types-actions">
+        <button id="types-add" class="btn primary">Ajouter</button>
+        <button id="types-defaults" class="btn ghost">Par défaut</button>
+      </div>
+      <table id="types-table">
+        <thead><tr><th>#</th><th>Type</th><th>Actions</th></tr></thead>
+        <tbody id="types-tbody"></tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

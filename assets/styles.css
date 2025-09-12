@@ -1,1 +1,7 @@
-body{font-family:sans-serif;}
+
+body{font-family:sans-serif}
+.card{border:1px solid #ccc;margin:1em 0;padding:1em}
+.game-fields{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:12px}
+.form-field{display:flex;flex-direction:column}
+#types-table{width:100%;border-collapse:collapse}
+#types-table th,#types-table td{border:1px solid #ccc;padding:4px}
