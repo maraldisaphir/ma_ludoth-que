@@ -11,7 +11,14 @@
   <header class="topbar">
     <div class="brand"><span class="logo">🎲</span><span>Mes Jeux</span></div>
     <div class="top-actions">
-      <button id="theme-toggle" class="btn ghost">Thème</button>
+      <label class="select-like">
+        <span>Stockage :</span>
+        <select id="storage-mode">
+          <option value="cloud">Cloud (Blob)</option>
+          <option value="local">Local</option>
+        </select>
+      </label>
+      <button id="theme-toggle" class="btn ghost" title="Thème clair/sombre">Thème</button>
       <nav class="tabs">
         <button class="tab" data-tab="browse" id="tab-browse">Consulter / Imprimer</button>
         <button class="tab" data-tab="edit" id="tab-edit">Créer / Éditer</button>
@@ -20,38 +27,124 @@
   </header>
 
   <main class="container">
+    <!-- Onglet Consulter -->
     <section class="tab-panel" id="panel-browse">
       <div class="card">
-        <input id="search" type="search" placeholder="Rechercher..." />
+        <div class="browse-toolbar">
+          <input id="search" type="search" placeholder="Rechercher (nom, type, remarque)..." />
+          <select id="filter-type"><option value="">— Tous les types —</option></select>
+          <select id="filter-players">
+            <option value="">— Tous joueurs —</option>
+            <option value="1">1 joueur</option><option value="2">2 joueurs</option>
+            <option value="3">3 joueurs</option><option value="4">4 joueurs</option>
+            <option value="5">5 joueurs</option><option value="6">6+ joueurs</option>
+          </select>
+          <button class="btn" id="print">Imprimer</button>
+        </div>
         <div id="grid" class="game-grid"></div>
       </div>
     </section>
 
+    <!-- Onglet Créer / Éditer -->
     <section class="tab-panel" id="panel-edit" hidden>
       <div class="card">
         <h3>Gestion des jeux</h3>
+
+        <!-- LIGNE 1 -->
         <div class="game-fields">
-          <div class="form-field"><label>Nom</label><input id="jeu-nom"></div>
-          <div class="form-field"><label>Nb joueurs min</label><input id="jeu-nb-min" type="number"></div>
-          <div class="form-field"><label>Nb joueurs max</label><input id="jeu-nb-max" type="number"></div>
-          <div class="form-field"><label>Âge</label><input id="jeu-age"></div>
-          <div class="form-field"><label>Durée</label><input id="jeu-duree" type="number"></div>
+          <div class="form-field">
+            <label for="jeu-nom">Nom</label>
+            <input id="jeu-nom" type="text" placeholder="ex: Skyjo" />
+          </div>
+          <div class="form-field">
+            <label for="jeu-nb-min">Nb joueurs min</label>
+            <input id="jeu-nb-min" type="number" min="1" inputmode="numeric" />
+          </div>
+          <div class="form-field">
+            <label for="jeu-nb-max">Nb joueurs max</label>
+            <input id="jeu-nb-max" type="number" min="1" inputmode="numeric" />
+          </div>
+          <div class="form-field">
+            <label for="jeu-age">Âge conseillé (ex: 8+)</label>
+            <input id="jeu-age" type="text" placeholder="8+" />
+          </div>
+          <div class="form-field">
+            <label for="jeu-duree">Durée (min)</label>
+            <input id="jeu-duree" type="number" min="0" inputmode="numeric" />
+          </div>
+        </div>
+
+        <!-- LIGNE 2 -->
+        <div class="game-extra">
+          <div class="col">
+            <label for="jeu-types">Type(s) — Ctrl/Cmd pour multi</label>
+            <select id="jeu-types" multiple size="8"></select>
+          </div>
+          <div class="col">
+            <label for="jeu-remarques">Remarques</label>
+            <input id="jeu-remarques" type="text" placeholder="Notes rapides..." />
+            <label for="jeu-url">Lien (Gilles Digitale)</label>
+            <input id="jeu-url" type="url" placeholder="https://..." />
+          </div>
+          <div class="col">
+            <label for="jeu-photo">Photo (upload)</label>
+            <input id="jeu-photo" type="file" accept="image/*" />
+            <div id="photo-preview" class="photo-preview" hidden><img alt="aperçu" id="photo-img"/></div>
+          </div>
+        </div>
+
+        <!-- LIGNE 3 -->
+        <div class="game-desc">
+          <label for="jeu-desc">Description</label>
+          <textarea id="jeu-desc" rows="4" placeholder="Brève description du jeu..."></textarea>
+        </div>
+
+        <div class="actions-row">
+          <button id="btn-add-update" class="btn primary">Ajouter / Mettre à jour</button>
+          <button id="btn-delete" class="btn danger">Supprimer</button>
+          <div class="right">
+            <label for="select-jeu" class="compact-label">— Sélectionner un jeu —</label>
+            <select id="select-jeu"></select>
+            <button id="btn-charger" class="btn">Charger</button>
+            <button id="btn-clear" class="btn ghost">Vider le formulaire</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Importer / Exporter / Cloud</h3>
+        <div class="import-export">
+          <div class="row">
+            <button id="export-json" class="btn">Exporter JSON</button>
+            <input id="file-import" type="file" accept="application/json" />
+            <button id="btn-import" class="btn">Importer</button>
+          </div>
+          <div class="row">
+            <input id="dataset-name" type="text" placeholder="Nom de dataset (ex: mes-jeux)"/>
+            <button id="push-cloud" class="btn primary">Pousser vers Cloud</button>
+            <button id="pull-cloud" class="btn">Charger depuis Cloud</button>
+          </div>
+          <p class="hint">Astuce Cloud (Blob) : adaptez vos endpoints dans votre code si besoin.</p>
         </div>
       </div>
     </section>
 
-    <!-- Paramètres en bas -->
+    <!-- SECTION PARAMÈTRES TOUT EN BAS -->
     <div class="card" id="params-card">
       <h3>Paramètres (Types)</h3>
+      <p>Ces types alimentent les sélections et filtres (onglet consulter + formulaire).</p>
       <div class="types-actions">
-        <button id="types-add" class="btn primary">Ajouter</button>
-        <button id="types-defaults" class="btn ghost">Par défaut</button>
+        <button id="types-add" class="btn primary">Ajouter une ligne</button>
+        <button id="types-save" class="btn">Enregistrer paramètres</button>
+        <button id="types-defaults" class="btn ghost">Types par défaut</button>
       </div>
       <table id="types-table">
-        <thead><tr><th>#</th><th>Type</th><th>Actions</th></tr></thead>
+        <thead><tr><th>#</th><th>Intitulé du type</th><th>Actions</th></tr></thead>
         <tbody id="types-tbody"></tbody>
       </table>
     </div>
   </main>
+
+  <footer class="footer"><span>© 2025 - Ludothèque perso</span></footer>
 </body>
 </html>

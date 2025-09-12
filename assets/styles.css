@@ -1,7 +1,65 @@
+/* THEME */
+:root{
+  --bg:#ffffff; --text:#0f172a; --card:#ffffff; --muted:#f3f4f6; --border:#e5e7eb;
+  --primary:#3b82f6; --danger:#ef4444; --shadow:0 6px 24px rgba(0,0,0,.06);
+}
+html[data-theme='dark']{
+  --bg:#0b1020; --text:#e5e7eb; --card:#12172a; --muted:#1b233d; --border:#253054;
+  --primary:#60a5fa; --danger:#f87171; --shadow:0 6px 24px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+.container{max-width:1200px;margin:24px auto;padding:0 16px}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:20}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.1rem}
+.logo{font-size:1.3rem}
+.top-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.select-like{display:flex;align-items:center;gap:6px;border:1px solid var(--border);padding:4px 8px;border-radius:8px;background:var(--card)}
+.select-like select{background:transparent;color:var(--text);border:none;outline:none}
+.tabs{display:flex;gap:8px}
+.tab{border:1px solid var(--border);background:var(--card);padding:8px 10px;border-radius:10px;cursor:pointer}
+.tab.active{border-color:var(--primary);box-shadow:0 0 0 2px color-mix(in oklab, var(--primary) 25%, transparent)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:var(--shadow);margin-bottom:16px}
+h3{margin:6px 0 12px}
+.btn{border:1px solid var(--border);background:var(--card);color:var(--text);padding:8px 12px;border-radius:10px;cursor:pointer}
+.btn.primary{background:var(--primary);color:white;border-color:transparent}
+.btn.danger{background:var(--danger);color:white;border-color:transparent}
+.btn.ghost{background:transparent}
+input,select,textarea{width:100%;padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text)}
+label{font-weight:600;font-size:.92rem}
+.tab-panel[hidden]{display:none}
+.tab-panel{animation:fade .2s ease-in}@keyframes fade{from{opacity:0}to{opacity:1}}
 
-body{font-family:sans-serif}
-.card{border:1px solid #ccc;margin:1em 0;padding:1em}
-.game-fields{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:12px}
-.form-field{display:flex;flex-direction:column}
-#types-table{width:100%;border-collapse:collapse}
-#types-table th,#types-table td{border:1px solid #ccc;padding:4px}
+/* BROWSE */
+.browse-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.game-grid{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.game-card{border:1px solid var(--border);background:linear-gradient(180deg,var(--card),color-mix(in oklab,var(--primary) 5%,var(--card)));border-radius:14px;padding:12px;display:flex;gap:10px;align-items:flex-start}
+.game-card img{width:72px;height:72px;object-fit:cover;border-radius:10px;border:1px solid var(--border)}
+.game-meta{font-size:.9rem;opacity:.9}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.badge{border:1px solid var(--border);border-radius:999px;padding:2px 8px;font-size:.75rem;background:var(--muted)}
+
+/* EDIT — NO OVERLAP */
+.game-fields{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:12px;align-items:end}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.game-extra{display:grid;grid-template-columns:1.2fr 1fr .9fr;gap:12px;margin-top:14px}
+.game-desc{margin-top:10px}
+.photo-preview{margin-top:8px}
+.photo-preview img{width:120px;height:120px;object-fit:cover;border-radius:10px;border:1px solid var(--border)}
+.actions-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.actions-row .right{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.compact-label{font-weight:600}
+
+/* PARAMS TABLE en BAS */
+#params-card{margin-top:22px}
+#types-table{width:100%;border-collapse:collapse;margin-top:10px}
+#types-table th,#types-table td{border:1px solid var(--border);padding:8px 10px}
+#types-table th{background:var(--muted);text-align:left}
+#types-table td:last-child{width:1%;white-space:nowrap}
+.types-actions{display:flex;gap:8px;margin-bottom:8px}
+
+@media (max-width:1024px){
+  .game-fields{grid-template-columns:1fr 1fr}
+  .game-extra{grid-template-columns:1fr}
+}
+.footer{opacity:.7;padding:20px;text-align:center}
